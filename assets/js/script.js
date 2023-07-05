@@ -60,6 +60,7 @@ function generateSpecialChar() {
 /**
  * Returns an initialized passwordData object based on user input.
  * @returns {{criteria: {uppercase: {count: number, enabled: boolean}, special: {count: number, enabled: boolean}, lowercase: {count: number, enabled: boolean}, enabledCriteria: null, numeric: {count: number, enabled: boolean}}, length: number, text: null}}
+ * The passwordData object.
  */
 function initializePasswordData() {
 
@@ -95,7 +96,7 @@ function initializePasswordData() {
 
 /**
  * Returns the user's value for length.
- * @returns {number}
+ * @returns {number} User's length value.
  */
 function promptForLength() {
 
@@ -110,7 +111,7 @@ function promptForLength() {
 
 /**
  * Returns true if the user clicks "OK" to lowercase prompt and false otherwise.
- * @returns {boolean}
+ * @returns {boolean} User's lowercase answer.
  */
 function promptForLowercase() {
     return window.confirm(PASSWORD_LOWERCASE_PROMPT)
@@ -118,7 +119,7 @@ function promptForLowercase() {
 
 /**
  * Returns true if the user clicks "OK" to uppercase prompt and false otherwise.
- * @returns {boolean}
+ * @returns {boolean} User's uppercase answer.
  */
 function promptForUppercase() {
     return window.confirm(PASSWORD_UPPERCASE_PROMPT)
@@ -126,7 +127,7 @@ function promptForUppercase() {
 
 /**
  * Returns true if the user clicks "OK" to numeric prompt and false otherwise.
- * @returns {boolean}
+ * @returns {boolean} User's numeric answer.
  */
 function promptForNumeric() {
     return window.confirm(PASSWORD_NUMERIC_PROMPT)
@@ -134,7 +135,7 @@ function promptForNumeric() {
 
 /**
  * Returns true if the user clicks "OK" to special character prompt and false otherwise.
- * @returns {boolean}
+ * @returns {boolean} User's special character answer.
  */
 function promptForSpecialChar() {
     return window.confirm(PASSWORD_SPECIAL_PROMPT)
