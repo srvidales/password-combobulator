@@ -8,7 +8,7 @@ const ASCII_CHAR_NUMERIC_RANGE = [48, 57];
 const ASCII_SPECIAL_CHARS = [' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.',
     '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
 // Password minimum and maximum length
-const PASSWORD_MIN_MAX = [8, 12]
+const PASSWORD_MIN_MAX = [8, 128]
 // Window Text
 const PASSWORD_LENGTH_PROMPT = 'Enter password length between 8 and 12 characters:'
 const PASSWORD_LOWERCASE_PROMPT = 'Include lowercase characters?'
