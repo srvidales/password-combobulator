@@ -10,11 +10,12 @@ const ASCII_SPECIAL_CHARS = [' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', 
 // Password minimum and maximum length
 const PASSWORD_MIN_MAX = [8, 128]
 // Window Text
-const PASSWORD_LENGTH_PROMPT = 'Enter password length between 8 and 12 characters:'
+const PASSWORD_LENGTH_PROMPT = 'Enter password length between 8 and 128 characters:'
 const PASSWORD_LOWERCASE_PROMPT = 'Include lowercase characters?'
 const PASSWORD_UPPERCASE_PROMPT = 'Include uppercase characters?'
 const PASSWORD_NUMERIC_PROMPT = 'Include numeric characters?'
 const PASSWORD_SPECIAL_PROMPT = 'Include special characters?'
+const PASSWORD_NO_SELECTION_PROMPT = 'You must select at least one type of characters.'
 // Password criteria enum
 const Criteria = {
     Lowercase: 'lowercase',
@@ -71,32 +72,41 @@ function generateSpecialChar() {
  */
 function initializePasswordData() {
 
-    const passwordData = {
-        length: promptForLength(),
-        criteria: {
-            lowercase: {
-                enabled: promptForLowercase(),
-                count: 0
-            },
-            uppercase: {
-                enabled: promptForUppercase(),
-                count: 0,
-            },
-            numeric: {
-                enabled: promptForNumeric(),
-                count: 0,
-            },
-            special: {
-                enabled: promptForSpecialChar(),
-                count: 0,
-            },
-            enabledCriteria: null,
-        },
-        text: null,
-    }
+    var passwordData = {}
 
-    passwordData.text = new Array(passwordData.length).fill(null);
-    passwordData.criteria.enabledCriteria = [];
+    do {
+        passwordData = {
+            length: promptForLength(),
+            criteria: {
+                lowercase: {
+                    enabled: promptForLowercase(),
+                    count: 0
+                },
+                uppercase: {
+                    enabled: promptForUppercase(),
+                    count: 0,
+                },
+                numeric: {
+                    enabled: promptForNumeric(),
+                    count: 0,
+                },
+                special: {
+                    enabled: promptForSpecialChar(),
+                    count: 0,
+                },
+                enabledCriteria: null,
+            },
+            text: null,
+        }
+
+        passwordData.text = new Array(passwordData.length).fill(null);
+        passwordData.criteria.enabledCriteria = [];
+
+        if (passwordData.criteria.enabledCriteria.length === 0) {
+            window.alert(PASSWORD_NO_SELECTION_PROMPT)
+        }
+
+    } while (passwordData.criteria.enabledCriteria.length === 0)
 
     for (var criteriaKey in Criteria) {
         initializeEnabledCriteria(passwordData, Criteria[criteriaKey])
