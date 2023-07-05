@@ -50,7 +50,7 @@ function generateNumericChar() {
  */
 function generateSpecialChar() {
     // Special char array per https://owasp.org/www-community/password-special-characters
-    const specialChars = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+    const specialChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
     return specialChars[generateRandomValueInRange([0, specialChars.length - 1])]
 }
 
