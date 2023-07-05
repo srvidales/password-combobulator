@@ -6,7 +6,7 @@ const ASCII_CHAR_UPPERCASE_RANGE = [65, 90];
 const ASCII_CHAR_NUMERIC_RANGE = [48, 57];
 // Special char array per https://owasp.org/www-community/password-special-characters
 const ASCII_SPECIAL_CHARS = [' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.',
-  '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
+    '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
 // Password minimum and maximum length
 const PASSWORD_MIN_MAX = [8, 12]
 // Window Text
@@ -22,7 +22,7 @@ const PASSWORD_SPECIAL_PROMPT = 'Include special characters?'
  * @returns {number} The random number generated between the given range.
  */
 function generateRandomValueInRange(range) {
-  return Math.floor(Math.random() * (range[1] - range[0] + 1) + range[0]);
+    return Math.floor(Math.random() * (range[1] - range[0] + 1) + range[0]);
 }
 
 /**
@@ -30,7 +30,7 @@ function generateRandomValueInRange(range) {
  * @returns {string} The random lowercase character.
  */
 function generateLowercaseChar() {
-  return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_LOWERCASE_RANGE));
+    return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_LOWERCASE_RANGE));
 }
 
 /**
@@ -38,7 +38,7 @@ function generateLowercaseChar() {
  * @returns {string} The random uppercase character.
  */
 function generateUppercaseChar() {
-  return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_UPPERCASE_RANGE));
+    return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_UPPERCASE_RANGE));
 }
 
 /**
@@ -46,7 +46,7 @@ function generateUppercaseChar() {
  * @returns {string} The random numeric character.
  */
 function generateNumericChar() {
-  return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_NUMERIC_RANGE));
+    return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_NUMERIC_RANGE));
 }
 
 /**
@@ -54,7 +54,7 @@ function generateNumericChar() {
  * @returns {string} The random special character.
  */
 function generateSpecialChar() {
-  return ASCII_SPECIAL_CHARS[generateRandomValueInRange([0, ASCII_SPECIAL_CHARS.length - 1])]
+    return ASCII_SPECIAL_CHARS[generateRandomValueInRange([0, ASCII_SPECIAL_CHARS.length - 1])]
 }
 
 /**
@@ -64,34 +64,34 @@ function generateSpecialChar() {
  */
 function initializePasswordData() {
 
-  const passwordData = {
-    length: promptForLength(),
-    criteria: {
-      lowercase: {
-        enabled: promptForLowercase(),
-        count: 0
-      },
-      uppercase: {
-        enabled: promptForUppercase(),
-        count: 0,
-      },
-      numeric: {
-        enabled: promptForNumeric(),
-        count: 0,
-      },
-      special: {
-        enabled: promptForSpecialChar(),
-        count: 0,
-      },
-      enabledCriteria: null,
-    },
-    text: null,
-  }
+    const passwordData = {
+        length: promptForLength(),
+        criteria: {
+            lowercase: {
+                enabled: promptForLowercase(),
+                count: 0
+            },
+            uppercase: {
+                enabled: promptForUppercase(),
+                count: 0,
+            },
+            numeric: {
+                enabled: promptForNumeric(),
+                count: 0,
+            },
+            special: {
+                enabled: promptForSpecialChar(),
+                count: 0,
+            },
+            enabledCriteria: null,
+        },
+        text: null,
+    }
 
-  passwordData.text = new Array(passwordData.length).fill(null)
-  passwordData.criteria.enabledCriteria = []
+    passwordData.text = new Array(passwordData.length).fill(null)
+    passwordData.criteria.enabledCriteria = []
 
-  return passwordData;
+    return passwordData;
 }
 
 /**
@@ -100,12 +100,12 @@ function initializePasswordData() {
  */
 function promptForLength() {
 
-  var userLength = 0;
-  do {
-    userLength = Number(window.prompt(PASSWORD_LENGTH_PROMPT));
-  } while ( isNaN(userLength) || userLength < PASSWORD_MIN_MAX[0] || userLength > PASSWORD_MIN_MAX[1])
+    var userLength = 0;
+    do {
+        userLength = Number(window.prompt(PASSWORD_LENGTH_PROMPT));
+    } while (isNaN(userLength) || userLength < PASSWORD_MIN_MAX[0] || userLength > PASSWORD_MIN_MAX[1])
 
-  return userLength;
+    return userLength;
 
 }
 
@@ -146,10 +146,10 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+    passwordText.value = password;
 
 }
 
