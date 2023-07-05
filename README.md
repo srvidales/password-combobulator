@@ -43,10 +43,10 @@ No installation required.
 
 ## Usage
 
-In your favorite editor open the directory where you cloned the repo and locate the index.html file.
-From the editor launch your favorite browser. Inspect the page with development tools as necessary.
-Additionally, the repo is deployed to GitHub Pages.
-It can be found here: https://github.com/srvidales/password-combobulator.
+Open the [page](https://srvidales.github.io/password-combobulator/) in your favorite browser and click on the "Generate Password" button. You will be asked the length
+of the desired password to generate and if it will include lowercase, uppercase, numeric and/or special characters.
+Clicking "OK" will include those characters while "Cancel" will not. At the end, the generated password will appear in
+the text box.
 
 ## Docs
 
@@ -60,5 +60,5 @@ Screenshot can be found here: https://github.com/srvidales/password-combobulator
 
 ## Contributing
 
-Sergio Vidales Perez <srvidales@gmail.com>
-Xander Rapstine <xanderrapstine@gmail.com> (Starter code cloned from: https://github.com/coding-boot-camp/friendly-parakeet)
+- Sergio Vidales Perez <srvidales@gmail.com>
+- Xander Rapstine <xanderrapstine@gmail.com> (Starter code cloned from: https://github.com/coding-boot-camp/friendly-parakeet)
