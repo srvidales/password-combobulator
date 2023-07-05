@@ -28,22 +28,6 @@
         <article>
             <pre class="prettyprint source linenums"><code>// Assignment code here
 
-// ASCII char ranges per criteria
-const ASCII_CHAR_LOWERCASE_RANGE = [97, 122];
-const ASCII_CHAR_UPPERCASE_RANGE = [65, 90];
-const ASCII_CHAR_NUMERIC_RANGE = [48, 57];
-// Special char array per https://owasp.org/www-community/password-special-characters
-const ASCII_SPECIAL_CHARS = [' ', '!', '"', '#', '$', '%', '&amp;', '\'', '(', ')', '*', '+', ',', '-', '.',
-    '/', ':', ';', '&lt;', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
-// Password minimum and maximum length
-const PASSWORD_MIN_MAX = [8, 128]
-// Window Text
-const PASSWORD_LENGTH_PROMPT = 'Enter password length between 8 and 128 characters:'
-const PASSWORD_LOWERCASE_PROMPT = 'Include lowercase characters?'
-const PASSWORD_UPPERCASE_PROMPT = 'Include uppercase characters?'
-const PASSWORD_NUMERIC_PROMPT = 'Include numeric characters?'
-const PASSWORD_SPECIAL_PROMPT = 'Include special characters?'
-const PASSWORD_NO_SELECTION_PROMPT = 'You must select at least one type of characters.'
 // Password criteria enum
 const Criteria = {
     Lowercase: 'lowercase',
@@ -66,7 +50,8 @@ function generateRandomValueInRange(range) {
  * @returns {string} The random lowercase character.
  */
 function generateLowercaseChar() {
-    return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_LOWERCASE_RANGE));
+    const lowercaseCharRange = [97, 122];
+    return String.fromCharCode(generateRandomValueInRange(lowercaseCharRange));
 }
 
 /**
@@ -74,7 +59,8 @@ function generateLowercaseChar() {
  * @returns {string} The random uppercase character.
  */
 function generateUppercaseChar() {
-    return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_UPPERCASE_RANGE));
+    const uppercaseCharRange = [65, 90];
+    return String.fromCharCode(generateRandomValueInRange(uppercaseCharRange));
 }
 
 /**
@@ -82,7 +68,8 @@ function generateUppercaseChar() {
  * @returns {string} The random numeric character.
  */
 function generateNumericChar() {
-    return String.fromCharCode(generateRandomValueInRange(ASCII_CHAR_NUMERIC_RANGE));
+    const numericCharRange = [48, 57];
+    return String.fromCharCode(generateRandomValueInRange(numericCharRange));
 }
 
 /**
@@ -90,7 +77,9 @@ function generateNumericChar() {
  * @returns {string} The random special character.
  */
 function generateSpecialChar() {
-    return ASCII_SPECIAL_CHARS[generateRandomValueInRange([0, ASCII_SPECIAL_CHARS.length - 1])]
+    // Special char array per https://owasp.org/www-community/password-special-characters
+    const specialChars = " !\"#$%&amp;'()*+,-./:;&lt;=>?@[\]^_`{|}~";
+    return specialChars[generateRandomValueInRange([0, specialChars.length - 1])]
 }
 
 /**
@@ -99,6 +88,8 @@ function generateSpecialChar() {
  * The passwordData object.
  */
 function initializePasswordData() {
+
+    const noSelectionPrompt = 'You must select at least one type of characters.'
 
     var passwordData = {}
 
@@ -135,7 +126,7 @@ function initializePasswordData() {
         }
 
         if (passwordData.criteria.enabledCriteria.length === 0) {
-            window.alert(PASSWORD_NO_SELECTION_PROMPT)
+            window.alert(noSelectionPrompt)
         }
 
     } while (passwordData.criteria.enabledCriteria.length === 0)
@@ -160,10 +151,13 @@ function initializeEnabledCriteria(passwordData, criteriaKey) {
  */
 function promptForLength() {
 
+    const lengthPrompt = 'Enter password length between 8 and 128 characters:'
+    const passwordMinMaxRange = [8, 128]
+
     var userLength = 0;
     do {
-        userLength = Number(window.prompt(PASSWORD_LENGTH_PROMPT));
-    } while (isNaN(userLength) || userLength &lt; PASSWORD_MIN_MAX[0] || userLength > PASSWORD_MIN_MAX[1])
+        userLength = Number(window.prompt(lengthPrompt));
+    } while (isNaN(userLength) || userLength &lt; passwordMinMaxRange[0] || userLength > passwordMinMaxRange[1])
 
     return userLength;
 
@@ -174,7 +168,8 @@ function promptForLength() {
  * @returns {boolean} User's lowercase answer.
  */
 function promptForLowercase() {
-    return window.confirm(PASSWORD_LOWERCASE_PROMPT)
+    const lowercasePrompt = 'Include lowercase characters?'
+    return window.confirm(lowercasePrompt)
 }
 
 /**
@@ -182,7 +177,8 @@ function promptForLowercase() {
  * @returns {boolean} User's uppercase answer.
  */
 function promptForUppercase() {
-    return window.confirm(PASSWORD_UPPERCASE_PROMPT)
+    const uppercasePrompt = 'Include uppercase characters?'
+    return window.confirm(uppercasePrompt)
 }
 
 /**
@@ -190,7 +186,8 @@ function promptForUppercase() {
  * @returns {boolean} User's numeric answer.
  */
 function promptForNumeric() {
-    return window.confirm(PASSWORD_NUMERIC_PROMPT)
+    const numericPrompt = 'Include numeric characters?'
+    return window.confirm(numericPrompt)
 }
 
 /**
@@ -198,7 +195,8 @@ function promptForNumeric() {
  * @returns {boolean} User's special character answer.
  */
 function promptForSpecialChar() {
-    return window.confirm(PASSWORD_SPECIAL_PROMPT)
+    const specialPrompt = 'Include special characters?'
+    return window.confirm(specialPrompt)
 }
 
 /**
@@ -407,7 +405,7 @@ generateBtn.addEventListener("click", writePassword);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Jul 05 2023 05:19:47 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Jul 05 2023 16:12:22 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
