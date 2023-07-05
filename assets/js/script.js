@@ -102,15 +102,15 @@ function initializePasswordData() {
         passwordData.text = new Array(passwordData.length).fill(null);
         passwordData.criteria.enabledCriteria = [];
 
+        for (var criteriaKey in Criteria) {
+            initializeEnabledCriteria(passwordData, Criteria[criteriaKey])
+        }
+
         if (passwordData.criteria.enabledCriteria.length === 0) {
             window.alert(PASSWORD_NO_SELECTION_PROMPT)
         }
 
     } while (passwordData.criteria.enabledCriteria.length === 0)
-
-    for (var criteriaKey in Criteria) {
-        initializeEnabledCriteria(passwordData, Criteria[criteriaKey])
-    }
 
     return passwordData;
 }
