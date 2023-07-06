@@ -207,7 +207,7 @@ function generatePlan(passwordData) {
 function generatePlanMustHaveSection(passwordData) {
 
     for (var criteriaKey in Criteria) {
-        incrementCriteriaCount(passwordData, Criteria[criteriaKey], true)
+        incrementCriteriaCount(passwordData, Criteria[criteriaKey])
     }
 
 }
@@ -216,18 +216,9 @@ function generatePlanMustHaveSection(passwordData) {
  * Increments the criteria count. Used when inserting characters of certain criteria.
  * @param passwordData The passwordData object.
  * @param criteriaKey The criteria key that needs to be incremented.
- * @param checkEnabled Verify if the criteria is enabled before incrementing.
  */
-function incrementCriteriaCount(passwordData, criteriaKey, checkEnabled) {
-
-    if (checkEnabled) {
-        if (passwordData.criteria[criteriaKey].enabled) {
-            passwordData.criteria[criteriaKey].count++;
-        }
-    } else {
-        passwordData.criteria[criteriaKey].count++;
-    }
-
+function incrementCriteriaCount(passwordData, criteriaKey) {
+    passwordData.criteria[criteriaKey].count++;
 }
 
 /**
@@ -243,19 +234,19 @@ function generatePlanRandomSection(passwordData) {
             generateRandomValueInRange([0, passwordData.criteria.enabledCriteria.length - 1])
         switch (passwordData.criteria.enabledCriteria[enabledCriteriaIndex]) {
             case 0:
-                incrementCriteriaCount(passwordData, Criteria.Lowercase, false)
+                incrementCriteriaCount(passwordData, Criteria.Lowercase)
                 count++;
                 break;
             case 1:
-                incrementCriteriaCount(passwordData, Criteria.Uppercase, false)
+                incrementCriteriaCount(passwordData, Criteria.Uppercase)
                 count++;
                 break;
             case 2:
-                incrementCriteriaCount(passwordData, Criteria.Numeric, false)
+                incrementCriteriaCount(passwordData, Criteria.Numeric)
                 count++;
                 break;
             case 3:
-                incrementCriteriaCount(passwordData, Criteria.Special, false)
+                incrementCriteriaCount(passwordData, Criteria.Special)
                 count++;
                 break;
         }
